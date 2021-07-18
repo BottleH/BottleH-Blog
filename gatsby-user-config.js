@@ -2,7 +2,7 @@ module.exports = {
   title: 'BottleH Blog', // your blog header name
   description: 'BottleH Tech Blog',
   author: 'KimByeongHwan',
-  siteUrl: 'https://gatsby-starter-oneweek.netlify.com',
+  siteUrl: 'https://bottleh-blog.netlify.com',
   introduction: '안녕하세요. 백엔드 개발자 김병환입니다.',
   lang: 'ko', // choose en (english) or ko (korean)
   favicon: `./contents/assets/favicon.png`, // Add your favicon

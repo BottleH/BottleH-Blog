@@ -1,7 +1,7 @@
 module.exports = {
   title: 'BottleH Blog', // your blog header name
   description: 'BottleH Tech Blog',
-  author: 'ByeongHwanKim',
+  author: 'KimByeongHwan',
   siteUrl: 'https://gatsby-starter-oneweek.netlify.com',
   introduction: '안녕하세요. 백엔드 개발자 김병환입니다.',
   lang: 'ko', // choose en (english) or ko (korean)
@@ -9,14 +9,14 @@ module.exports = {
   blogSEODefaultImageRex: '/default.png/',
   social: {
     twitterId: ``, // Your Twitter account
-    githubId: 'ByeongHwanKim', // Your GitHub account
+    githubId: 'KimByeongHwan', // Your GitHub account
     mediumId: ``, // Your Medium account
     facebookId: ``, // Your Facebook account
     linkedinId: '', // Your LinkedIn account
     instagramId: ``, // Your Instagram account
   },
   comment: {
-    utterances: 'ByeongHwanKim/BottleH-Blog', // Your repository for archive comment
+    utterances: 'KimByeongHwan/BottleH-Blog', // Your repository for archive comment
   },
   sponsor: {
     buyMeACoffeeId: 'KimByeongHwan', //  Your buy me a coffee id

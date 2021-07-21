@@ -47,11 +47,18 @@ const PostContentWrapper = styled.article`
     margin: 4px 0;
 
     & > code {
+<<<<<<< HEAD
       background-color: white;
       font-size: 15px;
       border-radius: 4px;
       border: 1px solid ${({ theme: { colors } }) => colors.mainColor};
       color: ${({ theme: { colors } }) => colors.mainColor};
+=======
+      background-color: gray;
+      font-size: 15px;
+      border-radius: 4px;
+      color: black;
+>>>>>>> parent of 29b27a2... update code block style
       padding: 2px 4px;
       margin: 15px 0;
       font-family: KoPubWorld, NotoSansKR, NotoSansJP, -apple-system,

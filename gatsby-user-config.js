@@ -11,7 +11,11 @@ module.exports = {
     twitterId: ``, // Your Twitter account
     githubId: 'KimByeongHwan', // Your GitHub account
     mediumId: ``, // Your Medium account
+<<<<<<< HEAD
     facebookId: ``, // Your Facebook account
+=======
+    facebookId: `guys1017`, // Your Facebook account
+>>>>>>> parent of 29b27a2... update code block style
     linkedinId: '', // Your LinkedIn account
     instagramId: ``, // Your Instagram account
   },

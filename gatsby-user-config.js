@@ -2,8 +2,8 @@ module.exports = {
   title: 'BottleH Blog', // your blog header name
   description: 'BottleH Tech Blog',
   author: 'KimByeongHwan',
-  siteUrl: 'https://bottleh-blog.netlify.com',
-  introduction: '안녕하세요. 백엔드 개발자 김병환입니다.',
+  siteUrl: 'https://bottleh.netlify.com',
+  introduction: 'Back-End Developer',
   lang: 'ko', // choose en (english) or ko (korean)
   favicon: `./contents/assets/favicon.png`, // Add your favicon
   blogSEODefaultImageRex: '/default.png/',
@@ -11,11 +11,7 @@ module.exports = {
     twitterId: ``, // Your Twitter account
     githubId: 'KimByeongHwan', // Your GitHub account
     mediumId: ``, // Your Medium account
-<<<<<<< HEAD
-    facebookId: ``, // Your Facebook account
-=======
     facebookId: `guys1017`, // Your Facebook account
->>>>>>> parent of 29b27a2... update code block style
     linkedinId: '', // Your LinkedIn account
     instagramId: ``, // Your Instagram account
   },
@@ -33,5 +29,5 @@ module.exports = {
     lineNumbers: false,
   },
   ga: 'G-V1PTBRM17J', // Add your google analytics tranking ID
-  mainColor: '#00c471', // Your blog main color
+  mainColor: '#0a66c2', // Your blog main color
 };

@@ -1,0 +1,373 @@
+---
+title: 이펙티브자바 3판 3장 정리
+thumbnail: ./images/Effective-java.png
+date: 2021-03-28 21:12:15
+category: Effective-java
+tags: [java]
+draft: false
+---
+
+## 3장 모든 객체의 공통 메서드
+
+Object에서 final이 아닌 메소드(equals, hashCode, toString, clone, finalize)는 모두 재정의를 염두에 두고 설계되었다. 
+이 메소드들을 잘못 구현하면 대상 클래스가 일반적인 규약을 준수한다고 가정하고 만들어진 클래스(HashMap, HashSet 등)에서 
+오동작이 일어날 수 있다.
+
+### 목차
+
+___
+
+- [아이템10. equals는 일반 규약을 지켜 재정의하라](#아이템10-equals는-일반-규약을-지켜-재정의하라)
+
+- [아이템11. equals를 재정의하려거든 hashCode도 재정의하라](#아이템11-equals를-재정의하려거든-hashCode도-재정의하라)
+
+- [아이템12. toString을 항상 재정의하라](#아이템12-toString을-항상-재정의하라)
+- [아이템13. clone 재정의는 주의해서 진행하라](#아이템13-clone-재정의는-주의해서-진행하라)
+- [아이템14. Comparable을 구현할지 고려하라](#아이템14-Comparable을-구현할지-고려하라)
+
+
+
+### 아이템10. equals는 일반 규약을 지켜 재정의하라
+
+___
+
+equals 메소드 재정의는 쉽지만 위험할 수 있다.
+
+**10-1. 재정의하지 않을 상황**
+
+  - 각 인스턴스가 본질적으로 고유하다. 
+    - 주로 값(VO)을 표현하는게 아니라 동작하는 것을 표현하는 클래스 
+  - 인스턴스의 논리적 동치성을 검사할 일이 없다. 
+    - `java.util.regex.Pattern`에서 eqauls을 재정의해서 정규표현식이 같은지 재정의하지는 않는다. 
+  - 상위 클래스에서 재정의한 equals가 하위 클래스에서도 같은 상황이다.
+  - 클래스가 private이거나 package-private이고 equals 메서드를 호출할 일이 없다.
+    - 철저히 회피하고 싶으면 아래와 같이 구현해두자.
+
+```java
+@Override public boolean equals(Object o){
+    throw new AssertionError(); // 호출금지!!
+}
+```
+
+
+
+**10-2. 재정의해야 할 상황**
+
+  - '메모리주소를 기반으로 물리적으로 같은가?' 가 아니라 논리적 동치성(logical equality)를 비교해야할 때
+    - 즉, 객체가 같은지가 중요한게 아니라, 객체 내 값이 같은지 비교해야할 때 재정의해야한다.
+    - 주로 값 클래스(`Integer`, `String`)
+
+**10-3. equals 일반규약**
+
+equals 메서드를 재정의할 때는 반드시 일반 규약을 따라야 한다.
+
+10-3-1. **반사성**
+
+- null이 아닌 모든 참조 값 x에 대해, `x.equals(x)`는 true다.
+- 객체는 자기 자신과 같아야 한다는 뜻
+
+10-3-2. **대칭성** 
+
+- null이 아닌 모든 참조 값 x, y에 대해, `x.equals(y)`가 true면 `y.equals(x)`도 true다.
+- 두 객체는 서로에 대한 동치 여부에 똑같이 답해야 한다.
+
+```java
+public class CaseInsensitiveString {
+    private final String s;
+
+    public CaseInsensitiveString(String s) {
+        this.s = Objects.requireNonNull(s);
+    }
+    
+    // 대칭성 위배!
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof CaseInsensitiveString) {
+            return s.equalsIgnoreCase(
+                    ((CaseInsensitiveString) o).s);
+        } else if (o instanceof String) { // 한 방향으로만 작동한다!
+            return s.equalsIgnoreCase((String) o);
+        }
+        return false;
+    }
+}
+```
+
+여기서 `String.eqauls(CaseInsensitiveString)`은 실패하여 대칭성을 위배한다.
+
+10-3-3. **추이성**
+
+- null이 아닌 모든 참조 값 x, y, z에 대해, `x.equals(y)`가 true이고 `y.equals(z)`도 true면, `x.equals(z)`도 true다.
+- 개인적인 견해로는 삼단논법을 생각하면 된다!
+
+```java
+public class Point {
+    private int x;
+    private int y;
+
+    public Point(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public boolean equals(Object o) {
+        if (!(o instanceof Point)) {
+            return false;
+        }
+        Point p = (Point) o;
+        return p.x == x && p.y == y;
+    }
+}
+
+public class ColorPoint extends Point {
+    private Color color;
+
+    public ColorPoint(int x, int y, Color color) {
+        super(x, y);
+        this.color = color;
+    }
+
+    public boolean equals(Object o) {
+        if (!(o instanceof Point)) {
+            return false;
+        } else if (!(o instanceof ColorPoint)) {
+            return o.equals(this);
+        }
+        return super.equals(o) && ((ColorPoint) o).color == color;
+    }
+}
+```
+
+위 코드는 색상을 무시하고 비교하게 된다.
+
+**구체 클래스를 확장해 새로운 값을 추가하면서 equals 규약을 만족시킬 방법은 존재하지 않는다.**
+
+상속대신 **컴포지션**으로 우회하는 방법이 있다.
+
+- Point를 상속하는 대신 ColorPoint의 private 필드로 두자.
+
+✔ 리스코프 치환 원칙에 따르면, 어떤 타입에 있어 중요한 속성이라면 그 하위 타입에서도 마찬가지로 중요하다. 즉, 그 타입의 모든 메서드가 하위 타입에서도 똑같이 잘 작동해야 한다.
+
+10-3-4. **일관성**
+
+- null이 아닌 모든 참조 값 x, y에 대해, `x.equals(y)`를 반복해서 호출하면 항상 true를 반환하거나, 항상 false를 반환한다.
+- 두 객체가 같다면 (어느 하나 혹은 두 객체 모두가 수정되지 않는 한) 앞으로도 영원히 같아야 한다는 뜻
+- 클래스를 작성할 때는 불변 클래스로 만드는 게 나을지를 심사숙고 하자.
+- 클래스가 불변이든 가변이든 **equals의 판단에 신뢰할 수 없는 자원이 끼어들게 해서는 안 된다.**
+
+10-3-5. **null-아님**
+
+- null이 아닌 모든 참조 값 x에 대해, `x.equals(null)`은 false다.
+- 명시적 검사(`==null`) 보다는 묵시적 검사(`instanceof`)를 사용하자.
+
+**10-4. equals 메서드 구현 방법**
+
+1. `==` 연산자를 사용해 자기 자신의 참조인지 확인한다.
+   - `float`과 `double`은 `compare`로 비교(특수한 부동소수 값을 다뤄야 하기 때문)
+2. `instanceof` 연산자로 입력이 올바른 타입인지 확인한다.
+3. 입력을 올바른 타입으로 형변환한다.
+4. 입력 객체와 자기 자신의 대응되는 '핵심' 필드들이 모두 일치하는지 하나씩 검사한다.
+
+❗ 때론, null도 정상 값으로 취급하는 참조 타입 필드도 있다. 이럴 땐, `Objects.equals(Object, Object)`로 비교하자.
+
+> 결론: 꼭 필요한 경우가 아니면 equals를 재정의하지 말자. 그냥 IDE에 맡기는 것이 사람보다 나을 수도 있다.
+
+
+
+### 아이템11. equals를 재정의하려거든 hashCode도 재정의하라
+
+___
+
+**11-1. hashCode 규약**
+
+1. equals 비교에 사용되는 정보가 변경되지 않았다면, 애플리케이션이 실행되는 동안 그 객체의 hashCode 메서드는 몇 번을 호출해도 일관되게 항상 같은 값을 반환해야 한다. 단, 애플리케이션을 다시 실행한다면 이 값이 달라져도 상관없다.
+
+2. equals(Object)가 두 객체를 같다고 판단했다면, 두 객체의 hashCode는 똑같은 값을 반환해야 한다.
+
+3. equals(Object)가 두 객체를 다르다고 판단했더라도, 두 객체의 hashCode가 서로 다른 값을 반환할 필요는 없다. 단, 다른 객체에 대해서는 다른 값을 반환해야 해시테이블의 성능이 좋아진다.
+
+**hashCode 재정의를 잘못했을 때 크게 문제가 되는 조항은 2번이다.**
+
+```java
+Map<PhoneNumber, String> m = new HashMap<>();
+m.put(new PhoneNumber(707, 867, 5309), "제니");
+m.get(new PhoneNumber(707, 867, 5309)) // null 반환!
+```
+
+2개의 인스턴스가 사용되어 null을 반환한다. PhoneNumber 클래스가 hashCode를 재정의하지 않았기 때문!
+
+**11-2. 좋은 hashCode 작성 요령**
+
+1. int 변수 result를 선언한 후 값 c로 초기화한다.
+
+   - c는 해당 객체의 첫번째 핵심 필드(equals 비교에 사용되는 필드)를 단계 해시코드로 계산 한 것
+
+2. 해당 객체의 나머지 핵심 필드 f 각각에 대해 다음 작업을 수행한다.
+
+   - 해당 필드의 해시코드 c를 계산한다.
+
+   - 계산한 해시코드 c로 result를 갱신한다.
+   - ex) result = 31 * result + c;
+
+3. result를 반환한다.
+
+✔ 곱할 숫자가 31인 이유
+
+- 홀수이면서 소수(prime)이기 때문
+  - 사실 소수를 곱하는 이유는 명확하지 않지만 전통적으로 그리해 왔다.
+- 소수를 곱하면 곱셈을 시프트 연산과 빨셈으로 대체해 최적화 할 수 있다.
+- 31 * i = (i « 5) - i
+
+**11-3. hashCode 예시**
+
+```java
+@Override public int hashCode(){
+    int result = Short.hashcode(areaCode);
+    result = 31 * result + Short.hashCode(prefix);
+    result = 31 * result + Short.hashCode(lineNum);
+    return result;
+}
+```
+
+위 코드는 전형적인 hashCode 메서드다.
+
+```java
+@Override public int hashCode(){
+    return Objects.hash(lineNum, prefix, areaCode);
+}
+```
+
+위 코드는 성능이 살짝 아쉽다.
+
+```java
+private int hashCode; // 자동으로 0으로 초기화된다.
+
+@Override public int hashCode(){
+    int result = hashCode;
+    if(result == 0){
+        result = Short.hashCode(areaCode);
+        result = 31 * result + Short.hashCode(prefix);
+    	result = 31 * result + Short.hashCode(lineNum);
+        hashCode = result;
+    }
+    return result;
+}
+```
+
+위 코드는 해시코드를 지연 초기화(hashCode가 처음 불릴 때 계산)하는 메서드이다. 스레드 안정성까지 고려해야 함.
+
+
+
+**성능을 높인답시고 해시코드를 계산할 때 핵심 필드를 생략해서는 안된다.**
+
+- 속도야 빨라지겠지만, 해시 품질이 나빠져 해시테이블의 성능을 심각하게 떨어뜨릴 수 있다.
+
+**hashCode가 반환하는 값의 생성 규칙을 API 사용자에게 자세히 공표하지 말자. 그래야 클라이언트가 이 값에 의지하지 않게 되고, 추후에 계산 방식을 바꿀 수도 있다.**
+
+
+
+### 아이템12. toString을 항상 재정의하라
+
+___
+
+Object의 기본 toString 메서드가 우리가 작성한 클래스에 적합한 문자열을 반환하는 경우는 거의 없다.
+
+심지어 toString의 규약은 "모든 하위 클래스에서 이 메서드를 재정의하라"고 한다.
+
+**12-1. toString 재정의**
+
+1. **toString을 잘 구현한 클래스는 사용하기에 훨씬 즐겁고, 그 클래스를 사용한 시스템은 디버깅하기 쉽다. **
+
+2. **실전에서 toString은 그 객체가 가진 주요 정보를 모두 반환하는 게 좋다.**
+3. **반환값의 포맷을 문서활지 정해야한다.**
+   - 전화번호나 행렬 같은 값 클래스라면 문서화하기를 권한다.
+   - 포맷을 명시하면 그 객체는 표준적이고, 명확하고, 사람이 읽을 수 있게 된다.
+   - 단점은 포맷을 한번 명시하면 (그 클래스가 많이 쓰인다면) 평생 그 포맷에 얽매이게 된다.
+   - 포맷을 명시하지 않는다면 향후 릴리스에서 정보를 더 넣거나 포맷을 개선할 수 있는 유연성을 얻게 된다.
+4. **포맷을 명시하든 아니든 여러분의 의도는 명확히 밝혀야 한다.**
+5. **toString이 반환한 값에 포함된 정보를 얻어올 수 있는 API를 제공하자.**
+
+**12-2. toString 재정의를 하지 않아도 되는 경우**
+
+1. 정적 유틸리티 클래스([아이템4](2장_객체생성과_파괴.md))는 toString을 제공할 이유가 없다.
+2. 대부분의 열거 타입([아이템34](6장_열거_타입과_애너테이션.md))도 자바가 이미 완벽한 toString을 제공하니 따로 재정의하지 않아도 된다.
+
+❗ 하위 클래스들이 공유해야 할 문자열 표현이 있는 추상 클래스라면 toString을 재정의해줘야 한다.
+
+- ex) 대다수의 컬렉션 구현체는 추상 컬렉션 클래스들의 toString 메서드를 상속해 쓴다.
+
+
+
+### 아이템13. clone 재정의는 주의해서 진행하라
+
+___
+
+Cloneable은 복제해도 되는 클래스임을 명시하는 용도의 mixin interface(아이템20)지만, 아쉽게도 의도한 목적을 제대로 이루지 못했다. 가장 큰 문제는 clone 메서드가 선언된 곳이 Cloneable이 아닌 Object이고, 그마저도 protected이다. 하지만 Cloneable 방식은 널리 쓰이고 있다. 이 인터페이스는 놀랍게도 Object의 protected 메서드인 clone을 호출하면 그 객체의 필드들을 하나하나 복사한 객체를 반환하며, 그렇지 않은 클래스의 인스턴스에서 호출하면, `CloneNotSupportedException`을 던진다. 이는 인터페이스를 상당히 이례적으로 사용한 예이다.
+
+
+
+**13-1. clone 재정의**
+
+- clone 메서드는 사실상 생성자와 같은 효과를 낸다. 즉, clone은 원본 객체에 아무런 해를 끼치지 않는 동시에 복제된 객체의 불변식을 보장해야 한다.
+
+- 재정의한 public clone 메서드에서는 throws 절을 없애야 한다.
+- 상속용 클래스는 Cloneable을 구현해서는 안 된다. 
+
+
+
+**13-2. 복사 생성자와 복사 팩터리**
+
+복사 생성자(변환 생성자): 단순히 자신과 같은 클래스의 인스턴스를 인수로 받는 생성자
+
+복사 팩터리(변환 팩터리): 복사 생성자를 모방한 정적 팩터리([아이템1](2장_객체생성과_파괴.md))
+
+**clone 대비 장점**
+
+- 언어 모순적이고 위험천만한 객체 생성 메커니즘(생성자를 쓰지 않는 방식)을 사용하지 않음.
+- 엉성하게 문서화된 규약에 기대지 않음.
+- 정상적인 final 필드 용법과도 충돌하지 않음.
+- 불필요한 검사 예외를 던지지 않음.
+- 형변환이 필요치 않음.
+- 복사 생성자와 복사 팩터리는 해당 클래스가 구현한 '인터페이스' 타입의 인스턴스를 인수로 받을 수 있다.
+  - 원본의 구현 타입에 얽매이지 않고 복제본의 타입을 직접 선택할 수 있다.
+
+> 새로운 인터페이스, 클래스를 만들 때 절대 Cloneable을 확장해서는 안 된다. final 클래스라면 Clneable을 구현해도 위험이 크지 않지만, 성능 최적화 관점에서 검토한 후 별다른 문제가 없을 때만 드물게 허용해야 한다. 기본 원칙은 '복제 기능은 생성자와 팩터리를 이용하는 게 최고'이다.
+
+
+
+### 아이템14. Comparable을 구현할지 고려하라
+
+___
+
+compareTo는 Object의 메서드가 아니라, Comparable 인터페이스의 유일무이한 메서드이다.
+
+compareTo는 단순 동치성 비교에 더해 순서까지 비교할 수 있으며, 제네릭하다. 나머지는 equals 메서드와 같다.
+
+**14-1. CompareTo 규약**
+
+1. 두 객체 참조의 순서를 바꿔 비교해도 예상한 결과가 나와야 한다.
+2. 첫 번째가 두 번째보다 크고 두 번째가 세 번째보다 크면, 첫 번째는 세 번째보다 커야 한다.
+3. 크기가 같은 객체들끼리는 어떤 객체와 비교하더라도 항상 같아야 한다.
+
+ equals 규약과 같이 반사성, 대칭성, 추이성을 충족해야 한다.
+
+
+
+**14-2. compareTo 작성요령**
+
+1. 입력 인수의 타입을 확인하거나 형변환할 필요가 없다.
+   - Comparable은 타입을 인수로 받는 제네릭 인터페이스이므로 compareTo 메서드의 인수 타입은 컴파일타임에 정해진다.
+
+2. null을 인수로 넣어 호출하면 `NullPointerException`을 던져야 한다.
+3. compareTo 메서드는 각 필드가 동치인지를 비교하는 게 아니라 순서를 비교한다.
+4. 객체 참조 필드를 비교하려면 compareTo 메서드를 재귀적으로 호출한다.
+5. Comparable을 구현하지 않은 필드나 표준이 아닌 순서로 비교해야 한다면 비교자(Comparator)를 대신 사용한다.
+
+6. 기본 정수타입을 비교할 때 관계연산자(>, < 등)보다 정적메소드 compare을 사용하라 (자바7부터)
+7. 핵심 필드부터 비교하자.
+
+나머지는 equals와 비슷하다.
+
+
+
+> 결론: 순서를 고려해야 하는 값 클래스를 작성한다면 꼭 Comparable 인터페이스를 구현하여, 그 인스턴스들을 쉽게 정렬하고, 검색하고, 비교 기능을 제공하는 컬렉션과 어우러지도록 해야 한다.

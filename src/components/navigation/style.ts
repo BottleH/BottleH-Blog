@@ -22,6 +22,7 @@ const H1 = styled.h1<{ current?: boolean }>`
   margin: 10px 30px 10px 0;
   color: ${({ theme: { colors }, current }) =>
     current ? colors.mainColor : colors.black};
+  font-size: 20px;
 `;
 
 const TagListWrapper = styled.section`

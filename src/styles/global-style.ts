@@ -17,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
-    /* font-size: 62.5%; */
+    font-size: 14px;
     font-family: KoPubWorld, NotoSansKR, NotoSansJP, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "맑은 고딕", "Yu Gothic", "Segoe UI", Roboto, system-ui, sans-serif !important;
   }
   @font-face { 

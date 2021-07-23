@@ -19,7 +19,7 @@ module.exports = {
     utterances: 'KimByeongHwan/BottleH-Blog', // Your repository for archive comment
   },
   sponsor: {
-    buyMeACoffeeId: 'KimByeongHwan', //  Your buy me a coffee id
+    buyMeACoffeeId: 'bottleh', //  Your buy me a coffee id
   },
   codeTheme: {
     // check https://www.gatsbyjs.com/plugins/gatsby-remark-highlight-code/

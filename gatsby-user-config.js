@@ -11,7 +11,7 @@ module.exports = {
     twitterId: ``, // Your Twitter account
     githubId: 'KimByeongHwan', // Your GitHub account
     mediumId: ``, // Your Medium account
-    facebookId: `guys1017`, // Your Facebook account
+    facebookId: ``, // Your Facebook account
     linkedinId: '', // Your LinkedIn account
     instagramId: ``, // Your Instagram account
   },

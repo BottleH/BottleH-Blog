@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0px;
     box-sizing: border-box;
     font-size: 14px;
-    font-family: KoPubWorld, NotoSansKR, NotoSansJP, -apple-system, BlinkMacSystemFont, "Helvetica Neue", "맑은 고딕", "Yu Gothic", "Segoe UI", Roboto, system-ui, sans-serif !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   }
   @font-face { 
     font-family: local('KoPubWorld'); 

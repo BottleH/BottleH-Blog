@@ -1,6 +1,6 @@
 ---
 title: 스프링 @Component와 @Bean 차이
-thumbnail: ./images/Effective-java.png
+thumbnail: ./images/spring.png
 date: 2021-06-16 01:15:51
 category: Back-End
 tags: [Spring]
@@ -13,11 +13,8 @@ draft: false
 
 
 
-### @Component vs @Bean
-
-___
-
 |      | `@Component`                                                 | `@Bean`                                                      |
 | ---- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | 용도 | **직접** 컨트롤이 가능한 Class들을 Bean으로 등록하고 싶은 경우 | 개발자가 컨트롤이 **불가능한** 외부 라이브러리들을 Bean으로 등록하고 싶은 경우 |
 | 타입 | Class                                                        | Method                                                       |
+

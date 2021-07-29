@@ -3,7 +3,7 @@ title: Web Server vs WAS
 thumbnail: ./images/webwas.png
 date: 2021-02-16 18:55:59
 category: Computer Science
-tags: [web server, was]
+tags: [Web server, WAS]
 draft: false
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: 스프링 @Component와 @Bean 차이
 thumbnail: ./images/spring/spring.png
-date: 2021-06-16 01:15:51
+date: 2021-06-18 03:15:51
 category: Back-End
 tags: [Spring]
 draft: false

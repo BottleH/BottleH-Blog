@@ -50,10 +50,12 @@ const PostContentWrapper = styled.article`
       background-color: rgb(246, 248, 250);
       font-size: 13.6px;
       border-radius: 3px;
-      color: #E53A40;
+      color: rgb(36, 41, 46);
       padding: 2px 4px;
       margin: 15px 0;
-      font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace, sans-serif !important;
+      font-family: KoPubWorld, NotoSansKR, NotoSansJP, -apple-system,
+        BlinkMacSystemFont, 'Helvetica Neue', '맑은 고딕', 'Yu Gothic',
+        'Segoe UI', Roboto, system-ui, sans-serif !important;
     }
 
     & > img {

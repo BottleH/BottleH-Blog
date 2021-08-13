@@ -47,15 +47,15 @@ const PostContentWrapper = styled.article`
     margin: 4px 0;
 
     & > code {
-      background-color: rgb(246, 248, 250);
-      font-size: 13.6px;
+      background-color: rgba(0,0,0,0.04);
+      font-size: 85%;
       border-radius: 3px;
-      color: rgb(36, 41, 46);
-      padding: 2px 4px;
-      margin: 15px 0;
-      font-family: KoPubWorld, NotoSansKR, NotoSansJP, -apple-system,
-        BlinkMacSystemFont, 'Helvetica Neue', '맑은 고딕', 'Yu Gothic',
-        'Segoe UI', Roboto, system-ui, sans-serif !important;
+      color: #E53A40;
+      padding: 0;
+      padding-top: 0.2em;
+      padding-bottom: 0.2em;
+      margin: 0;
+      font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
     }
 
     & > img {

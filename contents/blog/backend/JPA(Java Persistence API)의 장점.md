@@ -33,7 +33,7 @@ draft: false
 5. 성능 증가
    - 1차 캐시와 동일성(identity) 보장
      - **같은 트랜잭션 안**에서는 **같은 엔티티를 반환**하여, 약간의 조회 성능 향상
-     - DB Isolation Level이 **Read Commit**이어도 애플리케이션 Level에서 **Repeatable Read** 보장
+     - DB Isolation Level이 **Read Commit**이어도 애플리케이션 Level에서 **Repeatable Read** 보장([Isolation Level 포스팅](https://bottleh.netlify.app/backend/%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98%20%EA%B2%A9%EB%A6%AC%EC%88%98%EC%A4%80(Transaction%EC%9D%98%20Isolation%20Level)/))
    - 트랜잭션을 지원하는 쓰기 지연(transactional write-behind)
      - 트랜잭션을 커밋할 때까지 INSERT SQL을 모음
      - JDBC BATCH SQL 기능을 사용해서 한번에 SQL 전송

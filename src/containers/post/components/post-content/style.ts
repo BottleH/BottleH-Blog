@@ -47,13 +47,13 @@ const PostContentWrapper = styled.article`
     margin: 4px 0;
 
     & > code {
-      background-color: rgba(0,0,0,0.04);
+      background-color: rgb(246, 248, 250);
       font-size: 13.6px;
       border-radius: 3px;
       color: #E53A40;
       padding: 2px 4px;
       margin: 15px 0;
-      font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+      font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace, sans-serif !important;
     }
 
     & > img {

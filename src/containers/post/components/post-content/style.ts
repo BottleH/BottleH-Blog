@@ -48,13 +48,11 @@ const PostContentWrapper = styled.article`
 
     & > code {
       background-color: rgba(0,0,0,0.04);
-      font-size: 85%;
+      font-size: 13.6px;
       border-radius: 3px;
       color: #E53A40;
-      padding: 0;
-      padding-top: 0.2em;
-      padding-bottom: 0.2em;
-      margin: 0;
+      padding: 2px 4px;
+      margin: 15px 0;
       font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
     }
 

@@ -137,7 +137,8 @@ const PostContentWrapper = styled.article`
     border-spacing: 2px;
     & thead > tr > th {
       text-align: center;
-      border-bottom: 4px solid ${({ theme: { colors } }) => colors.mainColor};
+      border-bottom: 2px solid ${({ theme: { colors } }) => colors.mainColor};
+      padding: 1px 8px;
     }
 
     & tbody > tr > td {

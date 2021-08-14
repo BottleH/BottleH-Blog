@@ -42,7 +42,7 @@ draft: false
 
 
 
-| HTTP 메소드 | 안전 | 멱등 | 캐시가능 |
+| HTTP 메소드 | 안전(Safe) | 멱등(Idempotent) | 캐시가능(Cacheable) |
 | ----------- | ---- | ---- | -------- |
 | `GET`       | O    | O    | O        |
 | `POST`      | X    | X    | O        |

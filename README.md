@@ -1,5 +1,3 @@
-Bottle-H Blog
-
 개인 테크 블로그 repo입니다.
 
 [블로그 주소](https://bottleh.netlify.app/)

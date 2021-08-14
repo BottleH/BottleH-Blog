@@ -18,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0px;
     box-sizing: border-box;
     font-size: 14px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-family: KoPubWorld, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   }
   @font-face { 
     font-family: local('KoPubWorld'); 

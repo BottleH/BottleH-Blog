@@ -33,7 +33,7 @@ const theme: DefaultTheme = {
     6: '24px',
     7: '32px',
     8: '64px',
-    smallContainer: '640px',
+    smallContainer: '750px',
     bigContainer: '1000px',
   },
   space: {

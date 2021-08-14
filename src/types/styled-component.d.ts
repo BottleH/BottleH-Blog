@@ -34,7 +34,7 @@ declare module 'styled-components' {
       6: '24px';
       7: '32px';
       8: '64px';
-      smallContainer: '640px';
+      smallContainer: string;
       bigContainer: '1000px';
     };
     space: {

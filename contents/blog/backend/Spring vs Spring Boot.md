@@ -3,7 +3,7 @@ title: 스프링과 스프링부트 차이(Spring vs Spring Boot)
 thumbnail: ./images/spring/spring.png
 date: 2021-06-17 15:15:51
 category: Back-End
-tags: [Spring]
+tags: [Java, Spring]
 draft: false
 ---
 

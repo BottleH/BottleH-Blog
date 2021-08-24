@@ -48,6 +48,7 @@ const PostContentWrapper = styled.article`
     padding-bottom: 0.2em;
     margin: 0;
     font-size: 85%;
+    font-weight: bold;
     background-color: rgba(0,0,0,0.04);
     border-radius: 3px;
     font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;

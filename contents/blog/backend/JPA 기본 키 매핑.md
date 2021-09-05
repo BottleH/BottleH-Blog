@@ -101,15 +101,13 @@ ___
 
 키 생성 전용 테이블을 하나 만들고 여기에 이름과 값으로 사용할 컬럼을 만들어 데이터베이스 시퀀스를 흉내내는 전략이다.
 
-```mysql
+```sql
 CREATE TABLE CUSTOM_SEQUENCE {
 	sequence_name varchar(255) not null
     , next_val bigint
     , primary key (sequence_name)
 }
 ```
-
-
 
 ```java
 @Entity

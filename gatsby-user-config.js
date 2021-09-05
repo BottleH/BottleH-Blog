@@ -9,14 +9,14 @@ module.exports = {
   blogSEODefaultImageRex: '/default.png/',
   social: {
     twitterId: ``, // Your Twitter account
-    githubId: 'KimByeongHwan', // Your GitHub account
+    githubId: 'BottleH', // Your GitHub account
     mediumId: ``, // Your Medium account
     facebookId: ``, // Your Facebook account
     linkedinId: '', // Your LinkedIn account
     instagramId: ``, // Your Instagram account
   },
   comment: {
-    utterances: 'KimByeongHwan/BottleH-Blog', // Your repository for archive comment
+    utterances: 'BottleH/BottleH-Blog', // Your repository for archive comment
   },
   sponsor: {
     buyMeACoffeeId: 'bottleh', //  Your buy me a coffee id

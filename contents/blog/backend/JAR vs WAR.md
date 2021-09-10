@@ -19,7 +19,7 @@ JAR(Java Archive)은 `.jar` 확장자를 가지며 라이브러리, 리소스 �
 
 - `.class` 파일의 압축 버전과 컴파일된 Java 라이브러리 및 애플리케이션의 리소스를 포함하는 압축 파일
 
-```text
+```html
 META-INF/
     MANIFEST.MF
 com/
@@ -37,7 +37,7 @@ META-INF / MANIFEST.MF의 파일은 아카이브에 저장된 파일에 대한 �
 
 WAR(Web Application Archive)은 웹 어플리케이션 리소스를 나타낸다. `.war` 확장자를 가지며 모든 Servlet/JSP 컨테이너에 배포할 수 있는 **웹 응용 프로그램을 패키징** 하는데 사용된다.
 
-```text
+```html
 META-INF/
     MANIFEST.MF
 WEB-INF/

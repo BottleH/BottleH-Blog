@@ -3,7 +3,7 @@ title: Travis CI vs Jenkins
 thumbnail: ./images/CI/cicd.png
 date: 2021-07-30 23:07:59
 category: DevOps
-tags: [CI-CD]
+tags: [CICD, Jenkins]
 draft: false
 ---
 # Travis CI vs Jenkins

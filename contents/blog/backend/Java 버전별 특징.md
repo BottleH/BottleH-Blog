@@ -57,9 +57,9 @@ draft: false
 ```java
 switch (day) {
     case A -> System.out.println(10);
-    case B                -> System.out.println(9);
-    case C, D     -> System.out.println(8);
-    case E              -> System.out.println(7);
+    case B -> System.out.println(9);
+    case C, D -> System.out.println(8);
+    case E -> System.out.println(7);
 }
 ```
 

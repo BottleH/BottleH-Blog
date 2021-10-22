@@ -1,9 +1,9 @@
 ---
 title: 아파치 카프카(Apache Kafka)의 용어 및 특징
-thumbnail: ./images/StreamProcessor/kafka.png
+thumbnail: ./images/bigdata/kafka.png
 date: 2021-05-10 15:55:59
 category: DevOps
-tags: [StreamProcessor, Kafka]
+tags: [BigData, Kafka]
 draft: false
 ---
 

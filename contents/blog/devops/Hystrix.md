@@ -1,14 +1,13 @@
 ---
-title: [MSA] Circuit Breaker - Hystrix
+title: Circuit Breaker - Hystrix
 thumbnail: ./images/MSA/hystrix.png
 date: 2021-10-01 15:55:59
 category: DevOps
-tags: [MSA, Hystrix, Spring]
+tags: [MSA, Spring]
 draft: false
 ---
 
-# [MSA] Circuit Breaker - Hystrix
-
+# Circuit Breaker - Hystrix
 MSA 전환 프로젝트에서 사용하는 기술을 정확히 알고자 정리해 보았습니다.
 
 
@@ -58,7 +57,7 @@ public String doFallbackProcess() {
 
 
 1. spring-cloud-starter-netflix-hystrix 라이브러리 추가
-   - gradle e.g.) `implementation('org.springframework.cloud:spring-cloud-starter-netflix-hystrix`
+   - gradle e.g.) `implementation('org.springframework.cloud:spring-cloud-starter-netflix-hystrix')`
 2. Main Application에 `@EnableCircuitBreaker` annotation 추가
 3. Circuit Break를추가하고자 하는 메소드에 `@HystrixCommand` annotation추가
 

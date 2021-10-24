@@ -1,5 +1,5 @@
 ---
-title: 스프링 @Component와 @Bean 차이
+title: Spring @Component와 @Bean 차이
 thumbnail: ./images/spring/spring.png
 date: 2021-06-18 03:15:51
 category: Back-End
@@ -7,7 +7,7 @@ tags: [Spring]
 draft: false
 ---
 
-# 스프링 @Component와 @Bean 차이
+# Spring @Component와 @Bean 차이
 
 프로젝트에서 Spring Batch를 이용한 개발을 하다가 `@Component`와 `@Bean`의 차이가 궁금해서 간단하게 정리했다.
 

@@ -1,14 +1,14 @@
 ---
-title: Circuit Breaker - Hystrix
-thumbnail: ./images/MSA/hystrix.png
+title: 01. Circuit Breaker - Hystrix
+thumbnail: ./images/MSA/msa.png
 date: 2021-10-01 15:55:59
 category: DevOps
 tags: [MSA, Spring]
 draft: false
 ---
 
-# Circuit Breaker - Hystrix
-MSA 전환 프로젝트에서 사용하는 기술을 정확히 알고자 정리해 보았습니다.
+# 01.Circuit Breaker - Hystrix
+MSA 전환 프로젝트에서 사용하는 기술을 정확히 알고자 정리해 보았습니다. 첫번째는 서킷브레이커인 Hystrix에 대해 다뤄보겠습니다.
 
 
 
@@ -23,6 +23,8 @@ MSA 전환 프로젝트에서 사용하는 기술을 정확히 알고자 정리�
 ## 🛠Hystrix
 
 ### 1. 개요
+
+![hystrix](./images/MSA/hystrix.png)
 
 - MSA(MicroService Architecture)로 가장 유명한 Netflix가 Amazon AWS에서 MSA 시스템을 구축 할 때 개발한 Software 기반 Circuit Breaker
   - Java로 구성되어 동작

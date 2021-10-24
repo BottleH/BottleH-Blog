@@ -1,6 +1,6 @@
 ---
 title: 02.Client Side Load Balancer - Ribbon Client
-thumbnail: ./images/MSA/hystrix.png
+thumbnail: ./images/MSA/msa.png
 date: 2021-10-05 15:55:59
 category: DevOps
 tags: [MSA, Spring]

@@ -1,6 +1,6 @@
 ---
 title: 1장 단위 테스트의 목표
-thumbnail: /images/test/unit-testing.png
+thumbnail: ../images/test/unit-testing.png
 date: 2023-02-12 10:10:51
 category: Back-End
 tags: [Test]

@@ -1,6 +1,6 @@
 ---
 title: 2장 단위 테스트란 무엇인가?
-thumbnail: /contents/blog/backend/images/test/unit-testing.png
+thumbnail: ../images/test/unit-testing.png
 date: 2023-02-19 10:10:51
 category: Back-End
 tags: [Test]

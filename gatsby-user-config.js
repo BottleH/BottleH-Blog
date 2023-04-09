@@ -1,7 +1,7 @@
 module.exports = {
   title: 'BottleH Blog', // your blog header name
   description: 'BottleH Tech Blog',
-  author: 'KimByeongHwan',
+  author: 'BottleH',
   siteUrl: 'https://bottleh.netlify.com',
   introduction: 'Back-End Developer',
   lang: 'ko', // choose en (english) or ko (korean)

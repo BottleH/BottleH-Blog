@@ -1,5 +1,5 @@
 ---
-title: [단위 테스트] 4장 좋은 단위테스트의 4대 요소
+title: Unit Testing 4장 좋은 단위테스트의 4대 요소
 thumbnail: ../images/test/unit-testing.png
 date: 2023-03-12 15:10:51
 category: Back-End

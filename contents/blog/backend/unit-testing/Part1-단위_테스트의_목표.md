@@ -1,5 +1,5 @@
 ---
-title: [단위 테스트] 1장 단위 테스트의 목표
+title: Unit Testing 1장 단위 테스트의 목표
 thumbnail: ../images/test/unit-testing.png
 date: 2023-02-12 10:10:51
 category: Back-End

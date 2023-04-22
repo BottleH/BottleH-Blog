@@ -1,5 +1,5 @@
 ---
-title: [단위 테스트] 6장 단위 테스트 스타일
+title: Unit Testing 6장 단위 테스트 스타일
 thumbnail: ../images/test/unit-testing.png
 date: 2023-04-08 14:10:51
 category: Back-End

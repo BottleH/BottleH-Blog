@@ -1,5 +1,5 @@
 ---
-title: Unit Testing 3장 단위 테스트의 구조
+title: Unit Testing - 3장 단위 테스트의 구조
 thumbnail: ../images/test/unit-testing.png
 date: 2023-03-05 11:10:51
 category: Back-End

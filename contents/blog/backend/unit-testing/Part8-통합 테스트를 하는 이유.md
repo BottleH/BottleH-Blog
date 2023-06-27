@@ -1,7 +1,7 @@
 ---
 title: Unit Testing - 8장 통합 테스트를 하는 이유
 thumbnail: ../images/test/unit-testing.png
-date: 2023-05-14 18:55:51
+date: 2023-05-07 18:55:51
 category: Back-End
 tags: [Test]
 draft: false

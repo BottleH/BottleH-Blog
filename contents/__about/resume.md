@@ -6,7 +6,7 @@ draft: false
 
 ## ☎️ Contact information
 
-- **Email**    guys0217@gmail.com
+- **Email**    <guys0217@gmail.com>
 - **Github**  🔗 **(링크)** [https://github.com/BottleH](https://github.com/BottleH)
 
 ## 🎈  Experiences
@@ -34,3 +34,4 @@ draft: false
 2014.03 ~ 2020.08
 
 - 산업경영공학 전공
+  
